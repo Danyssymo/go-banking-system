@@ -1,11 +1,11 @@
 # ROADMAP.md — go-banking-system
 
 ## Фаза 1: Foundation
-- Структура монорепозитория (user-service, payment-service, notification-service)
-- go.work в корне, связывающий все три модуля
-- Базовая конфигурация (env, config-файлы)
-- Каркас CI (линтер, тесты) — без деплоя пока
-- Статус: не начато
+- [x] Структура монорепозитория (user-service, payment-service, notification-service)
+- [x] go.work в корне, связывающий все три модуля
+- [x] Базовая конфигурация (env, config-файлы) — см. PROGRESS.md
+- [x] Каркас CI (линтер, тесты) — без деплоя пока — см. PROGRESS.md
+- Статус: в процессе (файл добавлен, ждём первого зелёного прогона на GitHub Actions после push)
 
 ## Фаза 2: user-service — core
 - Регистрация, аутентификация пользователей
