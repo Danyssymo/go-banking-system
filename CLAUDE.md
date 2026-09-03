@@ -43,9 +43,9 @@ error handling vs exceptions, defer vs try-finally и т.д.) — использ
 7. Kubernetes / Helm
 8. CI/CD + финальная полировка портфолио
 
-Текущая фаза: [обновлять по ходу]
-Что сделано: [обновлять по ходу]
-Что дальше: [обновлять по ходу]
+Текущая фаза: Фаза 2 — user-service, core-логика
+Что сделано: доменная модель `User` (+ `ReconstituteUser`), ports (`UserRepository`, `PasswordHasher`), `usecase.RegisterUseCase`, адаптеры `adapters/postgres.UserRepository` и `adapters/hasher.BcryptHasher`; первая миграция (`000001_create_users_table`) проверена живьём (up/down на реальной БД в docker-compose); HTTP-слой на Gin (`register_handler`, `register_request`, `register_response`, `errors.go`) и `main.go` (сборка зависимостей: config → pgxpool → адаптеры → usecase → router) — эндпоинт `POST /register` поднят и проверен живьём через curl (201 Created, 409 при дубликате email, 400 при невалидном email/коротком пароле; в БД подтверждён bcrypt-хэш пароля)
+Что дальше: базовые unit-тесты, use case аутентификации (потребует метод Verify/Compare в `ports.PasswordHasher`), вынести регистрацию роутов и сборку зависимостей из `main.go` в отдельный слой (`internal/app` + `adapters/http/router.go`) — задел на Фазу 3, где добавится ещё и gRPC-сервер
 
 ## Архитектурные соглашения
 - Hexagonal architecture (по аналогии с тем, что я использую на текущей Java-работе)
